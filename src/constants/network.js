@@ -1,14 +1,12 @@
-import {Network, Networks} from 'stellar-sdk';
-
 const NETWORK = {
   available: {
     test: {
-      horizonURL: 'https://horizon-testnet.stellar.org',
-      networkPassphrase: Networks.TESTNET
+      horizonURL: 'https://horizon-playground.kininfrastructure.com',
+      networkPassphrase: 'Kin Playground Network ; June 2018'
     },
     public: {
-      horizonURL: 'https://horizon.stellar.org',
-      networkPassphrase: Networks.PUBLIC
+      horizonURL: 'https://horizon-ecosystem.kininfrastructure.com',
+      networkPassphrase: 'Public Global Kin Ecosystem Network ; June 2018'
     }
   },
   defaultName: 'test',

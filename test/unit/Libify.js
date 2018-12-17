@@ -223,7 +223,7 @@ describe('Libify.buildTransaction', () => {
         expect(opAtIndex(2).type).to.equal('pathPayment');
       })
       it('contains native destination assset', () => {
-        expect(opAtIndex(2).destAsset.code).to.equal('XLM')
+        expect(opAtIndex(2).destAsset.code).to.equal('KIN')
       })
       it('contains MONSTER send asset', () => {
         expect(opAtIndex(2).sendAsset.code).to.equal('MONSTER')

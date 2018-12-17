@@ -31,12 +31,12 @@ describe('linkBuilder', () => {
 
   describe('horizonUrlToExplorerLink()', () => {
     it('converts a simple horizon link to a endpoint explorer link', () => {
-      expect(linkBuilder.horizonUrlToExplorerLink('https://horizon-testnet.stellar.org/ledgers/1173'))
+      expect(linkBuilder.horizonUrlToExplorerLink('https://horizon-playground.kininfrastructure.com/ledgers/1173'))
         .to.equal('#explorer?resource=ledgers&endpoint=single&values=eyJsZWRnZXIiOiIxMTczIn0%3D');
     });
 
     it('converts a templated horizon link to a endpoint explorer link', () => {
-      expect(linkBuilder.horizonUrlToExplorerLink('https://horizon-testnet.stellar.org/ledgers/1173/transactions{?cursor,limit,order}'))
+      expect(linkBuilder.horizonUrlToExplorerLink('https://horizon-playground.kininfrastructure.com/ledgers/1173/transactions{?cursor,limit,order}'))
         .to.equal('#explorer?resource=transactions&endpoint=for_ledger&values=eyJsZWRnZXIiOiIxMTczIn0%3D');
     });
 

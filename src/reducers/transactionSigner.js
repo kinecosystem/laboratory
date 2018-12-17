@@ -57,7 +57,7 @@ function bipPath(state = [], action) {
   case LOAD_STATE:
   case IMPORT_FROM_XDR:
   case CLEAR_TRANSACTION:
-    return "44'/148'/0'"
+    return "44'/2017'/0'"
   case SET_BIP_PATH:
     return action.bipPath
   }
