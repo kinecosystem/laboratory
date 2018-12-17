@@ -30,7 +30,7 @@ export function startFriendbotRequest(target) {
       status: 'loading',
     });
 
-    axios.get('https://friendbot-kik.kininfrastructure.com/?addr=' + target)
+    axios.get('https://friendbot-testnet.kininfrastructure.com/?addr=' + target)
       .then(r => {
         dispatchInNewStack(dispatch, {
           type: FINISH_FRIENDBOT_REQUEST,
@@ -44,7 +44,7 @@ export function startFriendbotRequest(target) {
         let code, message;
         if (e.status === 0) {
           code = '';
-          message = 'Unable to reach Friendbot server at https://friendbot-kik.kininfrastructure.com';
+          message = 'Unable to reach Friendbot server at https://friendbot-testnet.kininfrastructure.com';
         } else {
           code = JSON.stringify(e.data, null, 2);
           message = `Failed to fund ${target} on the test network`;
