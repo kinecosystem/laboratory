@@ -72,10 +72,15 @@ gulp.task('develop', function(done) {
       gulp.watch(".tmp/**/*").on("change", bs.reload);
       bs.init({
         notify: false,
-        server: "./.tmp"
+        server: "./.tmp",
+        https: {
+          key: "./test/certs/server.key",
+          cert: "./test/certs/server.crt"
+        }
       });
       bsInitialized = true;
     }
+
     console.log(stats.toString({
       hash: false,
       version: false,
