@@ -1,10 +1,10 @@
 const NETWORK = {
   available: {
-    test: {
+    public: {
       horizonURL: 'https://horizon.kinfederation.com',
       networkPassphrase: 'Kin Mainnet ; December 2018'
     },
-    public: {
+    test: {
       horizonURL: 'https://horizon-testnet.kininfrastructure.com',
       networkPassphrase: 'Kin Testnet ; December 2018'
     }
