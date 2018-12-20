@@ -9,7 +9,7 @@
 // - string: string values that appear as just plain text
 // - object: typed values always with a type and value `{type: 'code', value: 'Foo();'}`
 
-import {xdr, StrKey, Keypair, Operation} from 'stellar-sdk';
+import {xdr, StrKey, Keypair, Operation} from 'kin-sdk';
 export default function extrapolateFromXdr(input, type) {
   // TODO: Check to see if type exists
   // TODO: input validation

@@ -1,4 +1,4 @@
-import {xdr, hash, StrKey, Network, Keypair} from 'stellar-sdk';
+import {xdr, hash, StrKey, Network, Keypair} from 'kin-sdk';
 import axios from 'axios';
 import SIGNATURE from '../constants/signature';
 
