@@ -1,6 +1,6 @@
 import React from 'react';
 import TextPicker from './TextPicker';
-import {StrKey} from 'stellar-sdk';
+import {StrKey} from 'kin-sdk';
 
 export default function PubKeyPicker(props) {
   return <TextPicker

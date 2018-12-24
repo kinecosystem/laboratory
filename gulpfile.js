@@ -16,7 +16,7 @@ gulp.task('default', ['develop']);
 var webpackOptions = {
   entry: {
     app: "./src/app.js",
-    vendor: ["axios", "react", "react-dom", "lodash", "stellar-sdk", "babel-polyfill"]
+    vendor: ["axios", "react", "react-dom", "lodash", "kin-sdk", "babel-polyfill"]
   },
   output: {
     publicPath: ''

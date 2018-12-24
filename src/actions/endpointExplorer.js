@@ -1,7 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import dispatchInNewStack from '../utilities/dispatchInNewStack';
-import {CallBuilder} from 'stellar-sdk/lib/call_builder';
+import {CallBuilder} from 'kin-sdk/lib/call_builder';
 import URI from 'urijs';
 
 export const CHOOSE_ENDPOINT = "CHOOSE_ENDPOINT";

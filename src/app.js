@@ -15,7 +15,7 @@ import {loadState, saveState}  from './localStorage';
 
 const persistedState = loadState();
 
-import StellarSdk from 'stellar-sdk';
+import StellarSdk from 'kin-sdk';
 
 if (typeof window !== "undefined") {
   window.StellarSdk = StellarSdk;
