@@ -7,5 +7,6 @@ const SLUG = {
   TXBUILDER: 'txbuilder',
   TXSIGNER: 'txsigner',
   XDRVIEWER: 'xdr-viewer',
+  ACC_VIEWER: 'acc-viewer'
 };
 export default SLUG;
