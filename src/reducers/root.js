@@ -6,6 +6,7 @@ import transactionSigner from './transactionSigner';
 import xdrViewer from './xdrViewer';
 import network from './network';
 import routing from './routing';
+import LedgerViewer from './LedgerViewer';
 
 const rootReducer = combineReducers({
   accountCreator,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   xdrViewer,
   network,
   routing,
+  LedgerViewer,
 });
 
 export default rootReducer;

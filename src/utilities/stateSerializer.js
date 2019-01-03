@@ -99,6 +99,8 @@ function serializePageSpecificState(slug, state) {
         xdrViewer.type = state.xdrViewer.type;
       }
       return xdrViewer;
+  case SLUG.ACC_VIEWER:
+        return state.LedgerViewer;
     default:
       return {};
   }

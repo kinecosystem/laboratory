@@ -223,7 +223,7 @@ describe('Libify.buildTransaction', () => {
         expect(opAtIndex(2).type).to.equal('pathPayment');
       })
       it('contains native destination assset', () => {
-        expect(opAtIndex(2).destAsset.code).to.equal('KIN')
+        expect(opAtIndex(2).destAsset.code).to.equal('XLM')
       })
       it('contains MONSTER send asset', () => {
         expect(opAtIndex(2).sendAsset.code).to.equal('MONSTER')
@@ -259,7 +259,7 @@ describe('Libify.buildTransaction', () => {
         expect(opAtIndex(5).signer.ed25519PublicKey).to.equal('GA2IKCQR3WNN5W5446MU5UZZW7UIHWQN6UVJCAXRMRH4JV3QSOABQXI4')
       })
       it('contains specified homeDomain', () => {
-        expect(opAtIndex(5).homeDomain).to.equal('example.com')
+        expect(opAtIndex(5).homeDomain.toString()).to.equal('example.com')
       })
       it('contains no high threshold', () => {
         expect(opAtIndex(5).highThreshold).to.be.a('undefined')
