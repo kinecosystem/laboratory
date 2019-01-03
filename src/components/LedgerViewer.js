@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import SelectPicker from './FormComponents/SelectPicker';
-import {viewAccountWithLedger} from '../actions/LedgerViewer';
+import {resetViewer, viewAccountWithLedger} from '../actions/LedgerViewer';
 
 
 class LedgerViewer extends React.Component {
@@ -26,9 +26,9 @@ class LedgerViewer extends React.Component {
             ledgerwalletMessage =
         <div>
             <br/>
-            < div className = {`s-alert TxSignerKeys__ledgerwallet_message ${messageAlertType}`}>
-            {ledgerwalletsStatus.message}
-        </div>
+            <div className = {`s-alert TxSignerKeys__ledgerwallet_message ${messageAlertType}`}>
+                {ledgerwalletsStatus.message}
+            </div>
         </div>
         }
 
@@ -40,7 +40,7 @@ class LedgerViewer extends React.Component {
         <h2>Ledger Account Viewer</h2>
     <p className="Introduction__lead">Select derivation path to view your account public key</p>
     <SelectPicker
-        onUpdate={(input) => dispatch(viewAccountWithLedger(input))}
+        onUpdate={(input) => {dispatch(resetViewer()); dispatch(viewAccountWithLedger(input))}}
         placeholder="Select BIP path"
         items={bipPaths}
     />

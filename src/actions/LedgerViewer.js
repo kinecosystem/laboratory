@@ -1,8 +1,7 @@
 import LedgerTransport from '@ledgerhq/hw-transport-u2f';
 import LedgerStr from '@ledgerhq/hw-app-str';
-import {Transaction, Keypair, xdr} from 'stellar-sdk';
-
-var BP = require("bluebird");
+//import {Transaction, Keypair, xdr} from 'stellar-sdk';
+//var BP = require("bluebird");
 
 
 export const LEDGER_WALLET_VIEW_START = 'LEDGER_WALLET_VIEW_START';
@@ -12,13 +11,12 @@ export const NONE = 'NONE';
 
 export function viewAccountWithLedger(bipPath) {
 
-
     return dispatch => {
-
 
         if(bipPath == ''){
             dispatch({
-                type: NONE})
+                type: NONE,
+            })
             return;
         }
 
@@ -52,7 +50,16 @@ export function viewAccountWithLedger(bipPath) {
         const openTimeout = 10 * 1000;
         LedgerTransport.create(openTimeout).then((transport) => {
             transport.setDebugMode(true);
-        onConnect(new LedgerStr(transport));
-    }).catch(onError);
+            onConnect(new LedgerStr(transport));
+        }).catch(onError);
+    };
+}
+
+// Resets everything to its default state
+export function resetViewer() {
+    return dispatch => {
+        dispatch({
+            type: LEDGER_WALLET_VIEW_START,
+        });
     };
 }
