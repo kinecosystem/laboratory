@@ -6,7 +6,7 @@ import extrapolateFromXdr from '../utilities/extrapolateFromXdr';
 import TreeView from './TreeView';
 import validateBase64 from '../utilities/validateBase64';
 import {updateXdrInput, updateXdrType, fetchLatestTx, fetchSigners} from '../actions/xdrViewer';
-import {xdr} from 'kin-sdk';
+import {xdr} from '@kinecosystem/kin-sdk';
 
 function XdrViewer(props) {
   let {dispatch, state, baseURL, networkPassphrase} = props;

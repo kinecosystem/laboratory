@@ -15,10 +15,10 @@ import {loadState, saveState}  from './localStorage';
 
 const persistedState = loadState();
 
-import StellarSdk from 'kin-sdk';
+import KinSdk from '@kinecosystem/kin-sdk';
 
 if (typeof window !== "undefined") {
-  window.StellarSdk = StellarSdk;
+  window.KinSdk = KinSdk;
 }
 
 document.write('<div id="app"></div>');

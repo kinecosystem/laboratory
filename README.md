@@ -1,6 +1,7 @@
-# laboratory
+# Kin Laboratory
 
-The Stellar Laboratory is a suite of tools to help one learn about exploring the Stellar network. See it in action: [https://www.stellar.org/laboratory/](https://www.stellar.org/laboratory/).
+The Kin Laboratory is a suite of tools to help one learn about exploring the Kin Stellar network. 
+See it in action: [https://laboratory-beta.kininfrastructure.com/](https://laboratory-beta.kininfrastructure.com/).
 
 ## Developing
 ```

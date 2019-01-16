@@ -7,7 +7,7 @@ import StroopsPicker from './FormComponents/StroopsPicker';
 import MemoPicker from './FormComponents/MemoPicker';
 import TimeBoundsPicker from './FormComponents/TimeBoundsPicker';
 import {connect} from 'react-redux';
-import {StrKey} from 'kin-sdk';
+import {StrKey} from '@kinecosystem/kin-sdk';
 import NETWORK from '../constants/network';
 import {fetchSequence} from '../actions/transactionBuilder';
 

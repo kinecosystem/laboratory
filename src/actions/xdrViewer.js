@@ -1,4 +1,4 @@
-import {xdr, hash, StrKey, Network, Keypair} from 'kin-sdk';
+import {xdr, hash, StrKey, Network, Keypair} from '@kinecosystem/kin-sdk';
 import axios from 'axios';
 import SIGNATURE from '../constants/signature';
 
@@ -40,9 +40,9 @@ export function fetchSigners(input, horizonBaseUrl, networkPassphrase) {
     dispatch({ type: FETCHED_SIGNERS_START });
     try {
       // Capture network for determining signature base
-      StellarSdk.Network.use(new Network(networkPassphrase));
+      KinSdk.Network.use(new Network(networkPassphrase));
 
-      let tx = new StellarSdk.Transaction(input);
+      let tx = new KinSdk.Transaction(input);
       const hashedSignatureBase = hash(tx.signatureBase());
 
       // Extract all signatures on transaction

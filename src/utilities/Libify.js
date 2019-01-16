@@ -8,8 +8,9 @@
 // Libify could also be used to generate source code from input but might not be
 // the best choice since source code differs based on content.
 
-import Sdk from 'kin-sdk';
+import KinSdk from '@kinecosystem/kin-sdk';
 import _ from 'lodash';
+import { TimeoutInfinite } from '@kinecosystem/kin-base';
 
 // Helpers
 let isEmpty = function(value) {
@@ -76,24 +77,24 @@ let Libify = {};
 
 Libify.Asset = function(opts) {
   if (isEmpty(opts) || opts.type === 'native') {
-    return Sdk.Asset.native();
+    return KinSdk.Asset.native();
   }
 
   assertNotEmpty(opts.code, 'Asset requires asset code');
-  return new Sdk.Asset(opts.code, opts.issuer);
+  return new KinSdk.Asset(opts.code, opts.issuer);
 }
 
 Libify.Memo = function(opts) {
   switch(opts.type) {
   case '':
   case 'MEMO_TEXT':
-    return Sdk.Memo.text(opts.content);
+    return KinSdk.Memo.text(opts.content);
   case 'MEMO_ID':
-    return Sdk.Memo.id(opts.content);
+    return KinSdk.Memo.id(opts.content);
   case 'MEMO_HASH':
-    return Sdk.Memo.hash(opts.content);
+    return KinSdk.Memo.hash(opts.content);
   case 'MEMO_RETURN':
-    return Sdk.Memo.return(opts.content);
+    return KinSdk.Memo.return(opts.content);
   }
 }
 
@@ -111,7 +112,7 @@ Libify.Operation = function(type, opts) {
 Libify.Operation.createAccount = function(opts) {
   assertNotEmpty(opts.destination, 'Create Account operation requires destination');
   assertNotEmpty(opts.startingBalance, 'Create Account operation requires starting balance');
-  return Sdk.Operation.createAccount({
+  return KinSdk.Operation.createAccount({
     destination: opts.destination,
     startingBalance: opts.startingBalance,
     source: opts.sourceAccount,
@@ -122,7 +123,7 @@ Libify.Operation.payment = function(opts) {
   assertNotEmpty(opts.destination, 'Payment operation requires destination');
   assertNotEmpty(opts.asset, 'Payment operation requires asset');
   assertNotEmpty(opts.amount, 'Payment operation requires amount');
-  return Sdk.Operation.payment({
+  return KinSdk.Operation.payment({
     destination: opts.destination,
     asset: Libify.Asset(opts.asset),
     amount: opts.amount,
@@ -144,7 +145,7 @@ Libify.Operation.pathPayment = function(opts) {
     return Libify.Asset(hopAsset);
   })
 
-  return Sdk.Operation.pathPayment({
+  return KinSdk.Operation.pathPayment({
     sendAsset: Libify.Asset(opts.sendAsset),
     sendMax: opts.sendMax,
     destination: opts.destination,
@@ -157,7 +158,7 @@ Libify.Operation.pathPayment = function(opts) {
 
 Libify.Operation.changeTrust = function(opts) {
   assertNotEmpty(opts.asset, 'Change Trust operation requires asset');
-  return Sdk.Operation.changeTrust({
+  return KinSdk.Operation.changeTrust({
     asset: Libify.Asset(opts.asset),
     limit: (opts.limit === '') ? undefined : opts.limit,
     source: opts.sourceAccount,
@@ -168,7 +169,7 @@ Libify.Operation.allowTrust = function(opts) {
   assertNotEmpty(opts.trustor, 'Allow Trust operation requires trustor');
   assertNotEmpty(opts.assetCode, 'Allow Trust operation requires asset code');
   assertNotEmpty(opts.authorize, 'Allow Trust operation requires authorization setting');
-  return Sdk.Operation.allowTrust({
+  return KinSdk.Operation.allowTrust({
     trustor: opts.trustor,
     assetCode: opts.assetCode,
     authorize: isLooseTruthy(opts.authorize),
@@ -178,7 +179,7 @@ Libify.Operation.allowTrust = function(opts) {
 
 Libify.Operation.accountMerge = function(opts) {
   assertNotEmpty(opts.destination, 'Account Merge operation requires destination');
-  return Sdk.Operation.accountMerge({
+  return KinSdk.Operation.accountMerge({
     destination: opts.destination,
     source: opts.sourceAccount,
   })
@@ -190,7 +191,7 @@ Libify.Operation.manageOffer = function(opts) {
   assertNotEmpty(opts.amount, 'Manage Offer operation requires amount');
   assertNotEmpty(opts.price, 'Manage Offer operation requires price');
   assertNotEmpty(opts.offerId, 'Manage Offer operation requires Offer ID');
-  return Sdk.Operation.manageOffer({
+  return KinSdk.Operation.manageOffer({
     selling: Libify.Asset(opts.selling),
     buying: Libify.Asset(opts.buying),
     amount: opts.amount,
@@ -205,7 +206,7 @@ Libify.Operation.createPassiveOffer = function(opts) {
   assertNotEmpty(opts.buying, 'Create Passive Offer operation requires buying asset');
   assertNotEmpty(opts.amount, 'Create Passive Offer operation requires amount');
   assertNotEmpty(opts.price, 'Create Passive Offer operation requires price');
-  return Sdk.Operation.createPassiveOffer({
+  return KinSdk.Operation.createPassiveOffer({
     selling: Libify.Asset(opts.selling),
     buying: Libify.Asset(opts.buying),
     amount: opts.amount,
@@ -215,7 +216,7 @@ Libify.Operation.createPassiveOffer = function(opts) {
 }
 
 Libify.Operation.inflation = function(opts) {
-  return Sdk.Operation.inflation({
+  return KinSdk.Operation.inflation({
     source: opts.sourceAccount,
   })
 }
@@ -259,7 +260,7 @@ Libify.Operation.setOptions = function(opts) {
   assertIntOrEmpty(opts.medThreshold, 'Medium Threshold must be an integer');
   assertIntOrEmpty(opts.highThreshold, 'High Threshold must be an integer');
 
-  return Sdk.Operation.setOptions({
+  return KinSdk.Operation.setOptions({
     inflationDest: opts.inflationDest,
     clearFlags: castIntOrUndefined(opts.clearFlags),
     setFlags: castIntOrUndefined(opts.setFlags),
@@ -276,7 +277,7 @@ Libify.Operation.setOptions = function(opts) {
 Libify.Operation.manageData = function(opts) {
   assertNotEmpty(opts.name, 'Manage Data operation requires entry name');
 
-  return Sdk.Operation.manageData({
+  return KinSdk.Operation.manageData({
     name: opts.name,
     value: castStringOrNull(opts.value),
     source: opts.sourceAccount,
@@ -285,7 +286,7 @@ Libify.Operation.manageData = function(opts) {
 
 Libify.Operation.bumpSequence = function(opts) {
   assertNotEmpty(opts.bumpTo, 'Sequence number should be set');
-  return Sdk.Operation.bumpSequence({
+  return KinSdk.Operation.bumpSequence({
     bumpTo: opts.bumpTo,
     source: opts.sourceAccount,
   })
@@ -295,14 +296,14 @@ Libify.Operation.bumpSequence = function(opts) {
 // abstraction to building a transaction with input data in the same format
 // as the reducers
 Libify.buildTransaction = function(attributes, operations, networkObj) {
-  Sdk.Network.use(networkObj);
+  KinSdk.Network.use(networkObj);
   let result = {
     errors: [],
     xdr: '',
   };
 
   try {
-    var account = new Sdk.Account(attributes.sourceAccount, Sdk.UnsignedHyper.fromString(attributes.sequence).subtract(1).toString());
+    var account = new KinSdk.Account(attributes.sourceAccount, KinSdk.UnsignedHyper.fromString(attributes.sequence).subtract(1).toString());
 
     let opts = {};
     if (attributes.fee !== '') {
@@ -324,14 +325,13 @@ Libify.buildTransaction = function(attributes, operations, networkObj) {
       timebounds.maxTime = attributes.maxTime;
     }
 
-    if (!_.isEmpty(timebounds)) {
-      opts.timebounds = _.defaults(timebounds, {
-        minTime: '0',
-        maxTime: '0'
-      });
-    }
+    opts.timebounds = _.defaults(timebounds, {
+      minTime: '0',
+      maxTime: '0'
+    });
 
-    var transaction = new Sdk.TransactionBuilder(account, opts)
+    var transaction = new KinSdk.TransactionBuilder(account, opts)
+    transaction.timeoutSet = true;  // TODO: ugly! setTimeout sets it, otherwise build() fails.
 
     if (attributes.memoType !== 'MEMO_NONE' && attributes.memoType !== '') {
       try {
@@ -364,7 +364,7 @@ Libify.buildTransaction = function(attributes, operations, networkObj) {
 
 
 Libify.signTransaction = function(txXdr, signers, networkObj, ledgerWalletSigs) {
-  Sdk.Network.use(networkObj);
+  KinSdk.Network.use(networkObj);
 
   let validSecretKeys = [];
   let validPreimages = [];
@@ -373,7 +373,7 @@ Libify.signTransaction = function(txXdr, signers, networkObj, ledgerWalletSigs) 
     if (signer !== null && !_.isUndefined(signer) && signer !== '') {
       // Signer
       if (signer.charAt(0) == 'S') {
-        if (!Sdk.StrKey.isValidEd25519SecretSeed(signer)) {
+        if (!KinSdk.StrKey.isValidEd25519SecretSeed(signer)) {
           return {
             message: 'One of secret keys is invalid'
           }
@@ -391,13 +391,13 @@ Libify.signTransaction = function(txXdr, signers, networkObj, ledgerWalletSigs) 
     }
   }
 
-  let newTx = new Sdk.Transaction(txXdr);
+  let newTx = new KinSdk.Transaction(txXdr);
   let existingSigs = newTx.signatures.length;
   let addedSigs = 0;
 
   _.each(validSecretKeys, (signer) => {
     addedSigs++;
-    newTx.sign(Sdk.Keypair.fromSecret(signer));
+    newTx.sign(KinSdk.Keypair.fromSecret(signer));
   });
   _.each(validPreimages, (signer) => {
     addedSigs++;
