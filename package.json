@@ -10,6 +10,7 @@
     "build": "gulp build"
   },
   "dependencies": {
+    "@kinecosystem/kin-sdk": "^0.20.0",
     "@ledgerhq/hw-app-str": "^4.14.0",
     "@ledgerhq/hw-transport-u2f": "^4.13.0",
     "axios": "^0.8.1",
@@ -27,7 +28,6 @@
     "gulp-mocha": "^2.2.0",
     "html-webpack-plugin": "^1.6.2",
     "json-loader": "^0.5.3",
-    "kin-sdk": "^0.1.0",
     "lodash": "^4.17.5",
     "mocha": "^2.4.5",
     "natives": "^1.1.6",

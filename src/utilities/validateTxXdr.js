@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {Transaction} from 'kin-sdk';
+import {Transaction} from '@kinecosystem/kin-sdk';
 import validateBase64 from './validateBase64';
 
 export default function validateTxXdr(input) {

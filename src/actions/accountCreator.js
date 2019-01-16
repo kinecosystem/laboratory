@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dispatchInNewStack from '../utilities/dispatchInNewStack';
-import {Keypair} from 'kin-sdk';
+import {Keypair} from '@kinecosystem/kin-sdk';
 
 export const GENERATE_NEW_KEYPAIR = 'GENERATE_NEW_KEYPAIR';
 export function generateNewKeypair() {

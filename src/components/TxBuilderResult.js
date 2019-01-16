@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Network} from 'kin-sdk';
+import {Network} from '@kinecosystem/kin-sdk';
 import {PubKeyPicker} from './FormComponents/PubKeyPicker';
 import {EasySelect} from './EasySelect';
 import Libify from '../utilities/Libify';

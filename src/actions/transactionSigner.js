@@ -1,6 +1,6 @@
 import LedgerTransport from '@ledgerhq/hw-transport-u2f';
 import LedgerStr from '@ledgerhq/hw-app-str';
-import {Transaction, Keypair, xdr} from 'kin-sdk';
+import {Transaction, Keypair, xdr} from '@kinecosystem/kin-sdk';
 
 var BP = require("bluebird");
 
