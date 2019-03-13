@@ -54,7 +54,7 @@ class AccountCreator extends React.Component {
         <div className="so-chunk">
           <h3>1. Keypair generator</h3>
 
-          <p>These keypairs can be used on the Stellar network where one is required. For example, it can be used as an account master key, account signer, and/or as a stellar-core node key.</p>
+          <p>These keypairs can be used on the Kin network where one is required. For example, it can be used as an account master key, account signer, and/or as a stellar-core node key.</p>
 
           <button className="s-button" onClick={() => {dispatch(generateNewKeypair())}}>Generate keypair</button>
           {keypairTable}
