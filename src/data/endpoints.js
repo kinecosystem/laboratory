@@ -198,23 +198,23 @@ export const endpointsMap = {
   //     }
   //   }
   // },
-  'paths': {
-    'label': 'Paths',
-    'endpoints': {
-      'all': {
-        'label': 'Find Payment Paths',
-        // 'helpUrl': 'https://www.stellar.org/developers/horizon/reference/path-finding.html',
-        'method': 'GET',
-        'path': {
-          template: '/paths{?source_account,destination_account,destination_asset_type,destination_asset_code,destination_asset_issuer,destination_amount}',
-          'destination_asset_type': 'destination_asset.type',
-          'destination_asset_code': 'destination_asset.code',
-          'destination_asset_issuer': 'destination_asset.issuer',
-        },
-        'setupComponent': require('../components/SetupPanes/FindPaymentPaths'),
-      }
-    }
-  },
+//   'paths': {
+//     'label': 'Paths',
+//     'endpoints': {
+//       'all': {
+//         'label': 'Find Payment Paths',
+//         // 'helpUrl': 'https://www.stellar.org/developers/horizon/reference/path-finding.html',
+//         'method': 'GET',
+//         'path': {
+//           template: '/paths{?source_account,destination_account,destination_asset_type,destination_asset_code,destination_asset_issuer,destination_amount}',
+//           'destination_asset_type': 'destination_asset.type',
+//           'destination_asset_code': 'destination_asset.code',
+//           'destination_asset_issuer': 'destination_asset.issuer',
+//         },
+//         'setupComponent': require('../components/SetupPanes/FindPaymentPaths'),
+//       }
+//     }
+//   },
   'payments': {
     'label': 'Payments',
     'endpoints': {
