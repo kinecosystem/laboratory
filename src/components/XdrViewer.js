@@ -17,7 +17,7 @@ function XdrViewer(props) {
 
   let xdrTypeIsValid = _.indexOf(xdrTypes, state.type) >= 0;
   let treeView, errorMessage;
-  if (state.input === '') { 
+  if (state.input === '') {
     errorMessage = <p>Enter a base-64 encoded XDR blob to decode.</p>;
   } else if (!xdrTypeIsValid) {
     errorMessage = <p>Please select a XDR type</p>;
@@ -39,8 +39,8 @@ function XdrViewer(props) {
     <div className="XdrViewer__setup so-back">
       <div className="so-chunk">
         <div className="pageIntro">
-          <p><a href="https://www.stellar.org/developers/horizon/learn/xdr.html">External Data Representation (XDR)</a> is a standardized protocol that the Stellar network uses to encode data.</p>
-          <p>The XDR Viewer is a tool that displays contents of a Stellar XDR blob in a human readable format.</p>
+          <p>External Data Representation (XDR) is a standardized protocol that the Kin network uses to encode data.</p>
+          <p>The XDR Viewer is a tool that displays contents of a Kin XDR blob in a human readable format.</p>
         </div>
         <p className="XdrViewer__label">
         Input a base-64 encoded XDR blob, or <a onClick={() => dispatch(fetchLatestTx(baseURL, networkPassphrase))}>fetch the latest transaction to try it out</a>:

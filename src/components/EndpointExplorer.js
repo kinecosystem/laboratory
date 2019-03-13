@@ -38,8 +38,8 @@ class EndpointExplorer extends React.Component {
       <div className="so-chunk">
         <div className="pageIntro">
           <p>
-            This tool can be used to run queries against the <a href="https://www.stellar.org/developers/reference/" target="_blank">REST API endpoints</a> on the
-            Horizon server. Horizon is the client facing library for the Stellar ecosystem.</p>
+            This tool can be used to run queries against the REST API endpoint on the
+            Horizon server. Horizon is the client facing library for the Kin ecosystem.</p>
         </div>
         <div className="EndpointExplorer">
           <div className="EndpointExplorer__picker">
