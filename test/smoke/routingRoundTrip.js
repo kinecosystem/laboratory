@@ -28,6 +28,7 @@ function itCircularlyConvertsState(slug, queryObj, endingQueryObj) {
         )
       )
     );
+
     expect(resultQueryObj).to.deep.equal(endingQueryObj);
   });
 }
@@ -36,7 +37,7 @@ describe('routing system', () => {
   describe('for endpoint explorer', () => {
     describe('in an empty scenario', () => {
       itCircularlyConvertsState(SLUG.EXPLORER, {
-        network: 'test',
+        network: 'public',
       });
     });
 
@@ -47,7 +48,7 @@ describe('routing system', () => {
         values: dehydrate({
           cursor: 5,
         }),
-        network: 'test',
+        network: 'public',
       });
     });
   });
@@ -55,7 +56,7 @@ describe('routing system', () => {
   describe('for transaction builder', () => {
     describe('in a default scenario', () => {
       itCircularlyConvertsState(SLUG.TXBUILDER, {
-        network: 'test',
+        network: 'public',
       });
     });
 
@@ -119,7 +120,7 @@ describe('routing system', () => {
     describe('where network is not specified and should be added ', () => {
       itCircularlyConvertsState(SLUG.EXPLORER, {
       }, {
-        network: 'test',
+        network: 'public',
       });
     });
   });
