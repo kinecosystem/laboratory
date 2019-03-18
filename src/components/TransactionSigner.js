@@ -51,7 +51,7 @@ class TransactionSigner extends React.Component {
         'Transaction Hash': <EasySelect plain={true}><pre className="so-code so-code__wrap"><code>{transaction.hash().toString('hex')}</code></pre></EasySelect>,
         'Source account': transaction.source,
         'Sequence number': transaction.sequence,
-        'Transaction Fee (stroops)': transaction.fee,
+        'Transaction Fee (Quarks)': transaction.fee,
         'Number of operations': transaction.operations.length,
         'Number of existing signatures': transaction.signatures.length,
       };

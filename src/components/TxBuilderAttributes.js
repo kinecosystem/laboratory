@@ -36,7 +36,7 @@ export default function TxBuilderAttributes(props) {
           value={attributes['fee']}
           onUpdate={(value) => {onUpdate('fee', value)}}
           />
-        <p className="optionsTable__pair__content__note">The network base fee is currently set to 100 stroops (0.01 kin). Transaction fee is equal to base fee times number of operations in this transaction.</p>
+        <p className="optionsTable__pair__content__note">The network base fee is currently set to 100 Quarks (0.001 kin). Transaction fee is equal to base fee times number of operations in this transaction.</p>
       </OptionsTablePair>
       <OptionsTablePair optional={true} label={<span>Memo </span>}>
         <MemoPicker

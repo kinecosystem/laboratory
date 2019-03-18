@@ -6,7 +6,7 @@ export default function SequencePicker(props) {
 
   return <PositiveIntPicker
     value={value}
-    placeholder='Amount in stroops (1 kin = 10,000 stroops)'
+    placeholder='Amount in Quarks (1 kin = 100,000 Quarks)'
     onUpdate={(value) => onUpdate(value)}
     />
 }

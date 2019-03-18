@@ -9,6 +9,6 @@ const NETWORK = {
       networkPassphrase: 'Kin Testnet ; December 2018'
     }
   },
-  defaultName: 'test',
+  defaultName: 'public',
 };
 export default NETWORK;
