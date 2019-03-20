@@ -1,7 +1,7 @@
 const NETWORK = {
   available: {
     public: {
-      horizonURL: 'https://horizon.kinfederation.com',
+      horizonURL: 'https://horizon-block-explorer.kininfrastructure.com',
       networkPassphrase: 'Kin Mainnet ; December 2018'
     },
     test: {
