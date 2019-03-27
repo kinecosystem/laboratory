@@ -330,7 +330,10 @@ Libify.buildTransaction = function(attributes, operations, networkObj) {
       maxTime: '0'
     });
 
-    var transaction = new KinSdk.TransactionBuilder(account, opts)
+    var transaction = new KinSdk.TransactionBuilder(account, opts);
+    if (attributes.minTime === '' && attributes.maxTime === ''){
+      transaction.timebounds = undefined;
+    }
     transaction.timeoutSet = true;  // TODO: ugly! setTimeout sets it, otherwise build() fails.
 
     if (attributes.memoType !== 'MEMO_NONE' && attributes.memoType !== '') {
