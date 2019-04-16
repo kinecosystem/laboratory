@@ -3,14 +3,19 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import SelectPicker from './FormComponents/SelectPicker';
 import {resetViewer, viewAccountWithLedger} from '../actions/LedgerViewer';
+import BipPathPicker from './FormComponents/BipPathPicker';
+import {setBIPPath, signWithLedger} from "../actions/transactionSigner";
 
 
 class LedgerViewer extends React.Component {
     render() {
 
         let {dispatch} = this.props;
-        let {ledgerwalletsStatus} = this.props.state;
-        console.log('ledgerwallets', ledgerwalletsStatus)
+        let {ledgerwalletsStatus,bipPath} = this.props.state;
+
+        console.log('ledgerwallets', bipPath.length)
+        if(!bipPath.length)
+            bipPath = ''
 
         let ledgerwalletMessage;
         if (ledgerwalletsStatus.message) {
@@ -39,11 +44,15 @@ class LedgerViewer extends React.Component {
         <div className="Introduction__container">
         <h2>Ledger Account Viewer</h2>
     <p className="Introduction__lead">Select derivation path to view your account public key</p>
-    <SelectPicker
-        onUpdate={(input) => {dispatch(resetViewer()); dispatch(viewAccountWithLedger(input))}}
-        placeholder="Select BIP path"
-        items={bipPaths}
-    />
+        <BipPathPicker
+            value={bipPath}
+            onUpdate={(input) => {dispatch(setBIPPath(input))}}
+        />
+            <button
+                className="s-button TxSignerKeys__signBipPath"
+                onClick={() => { dispatch(viewAccountWithLedger(bipPath))}}
+            >get Public Key</button>
+
         {ledgerwalletMessage}
     </div>
     </div>

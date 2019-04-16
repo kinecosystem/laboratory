@@ -5,10 +5,11 @@ import {
     LEDGER_WALLET_VIEW_SUCCESS,
     NONE,
 } from '../actions/LedgerViewer';
+import {SET_BIP_PATH} from "../actions/transactionSigner";
 
 
-const ledgerViewer= combineReducers({
-    ledgerwalletsStatus,
+const ledgerViewer = combineReducers({
+    ledgerwalletsStatus, bipPath
 })
 
 export default ledgerViewer;
@@ -19,7 +20,7 @@ function ledgerwalletsStatus(state = {}, action) {
         case NONE:
             return Object.assign({}, state, {
                 status: 'loading',
-                message:undefined
+                message: undefined
             });
         case LEDGER_WALLET_VIEW_START:
             return Object.assign({}, state, {
@@ -27,16 +28,27 @@ function ledgerwalletsStatus(state = {}, action) {
                 message: 'Waiting for wallet',
             });
         case LEDGER_WALLET_VIEW_ERROR:
-            return Object.assign({}, state,  {
+            console.log('action', action)
+            return Object.assign({}, state, {
                 status: 'failure',
                 message: 'Error:' + JSON.stringify(action.error),
             });
         case LEDGER_WALLET_VIEW_SUCCESS:
-            return Object.assign({}, state,  {
+            console.log('action', action)
+            return Object.assign({}, state, {
                 status: 'success',
-                message: 'Public Key: '+ action.publicKey,
+                message: 'Public Key: ' + action.publicKey,
                 pk: [action.publicKey]
             });
+    }
+    return state;
+}
+
+function bipPath(state = {}, action) {
+    switch (action.type) {
+        case SET_BIP_PATH:
+            return action.bipPath
+
     }
     return state;
 }
