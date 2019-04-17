@@ -8,12 +8,14 @@ export const LEDGER_WALLET_VIEW_START = 'LEDGER_WALLET_VIEW_START';
 export const LEDGER_WALLET_VIEW_SUCCESS = 'LEDGER_WALLET_VIEW_SUCCESS';
 export const LEDGER_WALLET_VIEW_ERROR = 'LEDGER_WALLET_VIEW_ERROR';
 export const NONE = 'NONE';
+export const CUSTOM = 'CUSTOM';
+export const REMOVE_CUSTOM = 'REMOVE_CUSTOM';
 
-export function viewAccountWithLedger(bipPath) {
+export function viewAccountWithLedger(bipPath, free) {
 
     return dispatch => {
 
-        if(bipPath == ''){
+        if (bipPath == '') {
             dispatch({
                 type: NONE,
             })
@@ -37,8 +39,7 @@ export function viewAccountWithLedger(bipPath) {
         let onConnect = (ledgerApi) => {
             let publicKey;
 
-            ledgerApi.getPublicKey(bipPath).then(result =>{
-                console.log('PK',result);
+            ledgerApi.getPublicKey(bipPath).then(result => {
                 publicKey = result.publicKey
                 dispatch({
                     type: LEDGER_WALLET_VIEW_SUCCESS,
@@ -55,7 +56,14 @@ export function viewAccountWithLedger(bipPath) {
     };
 }
 
-// Resets everything to its default state
+export function showCustomField(show) {
+    return dispatch => {
+        dispatch({
+            type: show ? CUSTOM : REMOVE_CUSTOM
+        });
+    };
+}
+
 export function resetViewer() {
     return dispatch => {
         dispatch({
