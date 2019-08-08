@@ -33,6 +33,7 @@ export function chooseNetwork(name) {
       name,
       horizonURL: NETWORK.available[name].horizonURL,
       networkPassphrase: NETWORK.available[name].networkPassphrase,
+      whitelistManager: NETWORK.available[name].whitelistManager
     }
   }
 }
