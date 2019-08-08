@@ -6,8 +6,7 @@ import {LOAD_STATE} from '../actions/routing';
 let defaultNetwork = {
   name: NETWORK.defaultName,
   horizonURL: NETWORK.available[NETWORK.defaultName].horizonURL,
-  networkPassphrase: NETWORK.available[NETWORK.defaultName].networkPassphrase,
-  whitelistManager: NETWORK.available[NETWORK.defaultName].whitelistManager
+  networkPassphrase: NETWORK.available[NETWORK.defaultName].networkPassphrase
 };
 
 let current = (state=defaultNetwork, action) => {
@@ -17,8 +16,7 @@ let current = (state=defaultNetwork, action) => {
         return {
           name: action.queryObj.network,
           horizonURL: action.queryObj.horizonURL,
-          networkPassphrase: action.queryObj.networkPassphrase,
-          whitelistManager: action.queryObj.whitelistManager
+          networkPassphrase: action.queryObj.networkPassphrase
         }
       }
 
