@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {chooseNetwork, setModalVisibility, updateModal, setCustomParams} from "../actions/network";
 import NETWORK from '../constants/network';
 import TextPicker from './FormComponents/TextPicker.js';
+import {Keypair} from '@kinecosystem/kin-base';
 
 class NetworkPicker extends React.Component {
   render() {
@@ -35,6 +36,12 @@ class NetworkPicker extends React.Component {
                 value={modal.values.networkPassphrase}
                 onUpdate={(value) => dispatch(updateModal('networkPassphrase', value))}
                 />
+              <p>Whitelist Manager:</p>
+              <TextPicker
+                value={modal.values.whitelistManager}
+                validator={isValidPublicAddress}
+                onUpdate={(value) => dispatch(updateModal('whitelistManager', value))}
+                />
               <button className="s-button"
                 disabled={false}
                 onClick={() => dispatch(setCustomParams(modal.values))}
@@ -63,6 +70,15 @@ const isValidHorizonURL = (u) => {
     return true;
   } catch (e) {
     return "Value is not a valid URL";
+  }
+}
+
+const isValidPublicAddress = (u) => {
+  try {
+    Keypair.fromPublicKey(u);
+    return true;
+  } catch (e) {
+    return "Value is not a valid public address"
   }
 }
 

@@ -9,7 +9,7 @@ import {updateXdrInput, updateXdrType, fetchLatestTx, fetchSigners} from '../act
 import {xdr} from '@kinecosystem/kin-sdk';
 
 function XdrViewer(props) {
-  let {dispatch, state, baseURL, networkPassphrase} = props;
+  let {dispatch, state, baseURL, networkPassphrase, whitelistManager} = props;
 
   let validation = validateBase64(state.input);
   let messageClass = validation.result === 'error' ? 'xdrInput__message__alert' : 'xdrInput__message__success';
@@ -32,7 +32,7 @@ function XdrViewer(props) {
 
   // Fetch signers on initial load
   if (state.type === "TransactionEnvelope" && state.fetchedSigners === null) {
-    dispatch(fetchSigners(state.input, baseURL, networkPassphrase))
+    dispatch(fetchSigners(state.input, baseURL, networkPassphrase, whitelistManager))
   }
 
   return <div>
@@ -43,7 +43,7 @@ function XdrViewer(props) {
           <p>The XDR Viewer is a tool that displays contents of a Kin XDR blob in a human readable format.</p>
         </div>
         <p className="XdrViewer__label">
-        Input a base-64 encoded XDR blob, or <a onClick={() => dispatch(fetchLatestTx(baseURL, networkPassphrase))}>fetch the latest transaction to try it out</a>:
+        Input a base-64 encoded XDR blob, or <a onClick={() => dispatch(fetchLatestTx(baseURL, networkPassphrase, whitelistManager))}>fetch the latest transaction to try it out</a>:
         </p>
         <div className="xdrInput__input">
           <textarea
@@ -52,7 +52,7 @@ function XdrViewer(props) {
             onChange={(event) => {
               dispatch(updateXdrInput(event.target.value));
               if (state.type === "TransactionEnvelope") {
-                dispatch(fetchSigners(event.target.value, baseURL, networkPassphrase))
+                dispatch(fetchSigners(event.target.value, baseURL, networkPassphrase, whitelistManager))
               }
             }}
             placeholder="Example: AAAAAGXNhB2hIkbP//jgzn4os/AAAAZAB+BaLPAAA5Q/xL..."></textarea>
@@ -84,7 +84,8 @@ function chooseState(state) {
   return {
     state: state.xdrViewer,
     baseURL: state.network.current.horizonURL,
-    networkPassphrase: state.network.current.networkPassphrase
+    networkPassphrase: state.network.current.networkPassphrase,
+    whitelistManager: state.network.current.whitelistManager
   }
 }
 

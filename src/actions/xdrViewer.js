@@ -19,14 +19,14 @@ export function updateXdrType(xdrType) {
 }
 
 export const FETCH_LATEST_TX = 'FETCH_LATEST_TX';
-export function fetchLatestTx(horizonBaseUrl, networkPassphrase) {
+export function fetchLatestTx(horizonBaseUrl, networkPassphrase, whitelisterManager) {
   return dispatch => {
     axios.get(horizonBaseUrl + '/transactions?limit=1&order=desc')
       .then(r => {
         const xdr = r.data._embedded.records[0].envelope_xdr;
         dispatch(updateXdrInput(xdr))
         dispatch(updateXdrType('TransactionEnvelope'))
-        dispatch(fetchSigners(xdr, horizonBaseUrl, networkPassphrase))
+        dispatch(fetchSigners(xdr, horizonBaseUrl, networkPassphrase, whitelisterManager))
       })
       .catch(r => dispatch({type: FETCH_SEQUENCE_FAIL, payload: r}))
   }
@@ -35,7 +35,7 @@ export function fetchLatestTx(horizonBaseUrl, networkPassphrase) {
 export const FETCHED_SIGNERS_SUCCESS = 'FETCHED_SIGNERS_SUCCESS';
 export const FETCHED_SIGNERS_FAIL = 'FETCHED_SIGNERS_FAIL';
 export const FETCHED_SIGNERS_START = 'FETCHED_SIGNERS_START';
-export function fetchSigners(input, horizonBaseUrl, networkPassphrase) {
+export function fetchSigners(input, horizonBaseUrl, networkPassphrase, whitelisterManager) {
   return dispatch => {
     dispatch({ type: FETCHED_SIGNERS_START });
     try {
@@ -69,41 +69,67 @@ export function fetchSigners(input, horizonBaseUrl, networkPassphrase) {
         response.forEach(r => r.data.signers.forEach(signer => allSigners[signer.key] = signer));
 
         allSigners = Object.values(allSigners);
+
+        // Add all whitelisters as valid signers
+        axios.get(horizonBaseUrl + '/accounts/' + whitelisterManager).then(response => {
+          let allWhitelisters = {};
+          Object.keys(response.data.data).forEach(whitelister => {
+            // For each key in the whitelistManager data, try to add it as a valid signer
+            try {
+              Keypair.fromPublicKey(whitelister) // Verify its an actual valid pk
+
+              allWhitelisters[whitelister] = {
+                key: whitelister,
+                public_key: whitelister,
+                type: 'ed25519_public_key'
+              }
+            } catch (e) {}
+          });
+
+          allSigners = allSigners.concat(Object.values(allWhitelisters));
+          // Add the whitelist manager itself as a valid signer
+          allSigners.push({
+            key: whitelisterManager,
+            public_key: whitelisterManager,
+            type: 'ed25519_public_key'
+          })
         
-        // We are only interested in checking if each of the signatures can be verified for some valid
-        // signer for any of the source accounts in the transaction -- we are not taking into account
-        // weights, or even if this signer makes sense.
-        for (var i = 0; i < signatures.length; i ++) {
-          const sigObj = signatures[i];
-          let isValid = false;
+        
+          // We are only interested in checking if each of the signatures can be verified for some valid
+          // signer for any of the source accounts in the transaction -- we are not taking into account
+          // weights, or even if this signer makes sense.
+          for (var i = 0; i < signatures.length; i ++) {
+            const sigObj = signatures[i];
+            let isValid = false;
 
-          for (var j = 0; j < allSigners.length; j ++) {
-            const signer = allSigners[j];
-            
-            // By nature of pre-authorized transaction, we won't ever receive a pre-auth
-            // tx hash in signatures array, so we can ignore pre-authorized transactions here.
-            switch (signer.type) {
-              case 'sha256_hash':
-                const hashXSigner = StrKey.decodeSha256Hash(signer.key);
-                const hashXSignature = hash(sigObj.sig);
-                isValid = hashXSigner.equals(hashXSignature);
+            for (var j = 0; j < allSigners.length; j ++) {
+              const signer = allSigners[j];
+              
+              // By nature of pre-authorized transaction, we won't ever receive a pre-auth
+              // tx hash in signatures array, so we can ignore pre-authorized transactions here.
+              switch (signer.type) {
+                case 'sha256_hash':
+                  const hashXSigner = StrKey.decodeSha256Hash(signer.key);
+                  const hashXSignature = hash(sigObj.sig);
+                  isValid = hashXSigner.equals(hashXSignature);
+                  break;
+                case 'ed25519_public_key':
+                  const keypair = Keypair.fromPublicKey(signer.key);
+                  isValid = keypair.verify(hashedSignatureBase, sigObj.sig);
+                  break;
+              }
+
+              if (isValid) {
                 break;
-              case 'ed25519_public_key':
-                const keypair = Keypair.fromPublicKey(signer.key);
-                isValid = keypair.verify(hashedSignatureBase, sigObj.sig);
-                break;
+              }
             }
 
-            if (isValid) {
-              break;
-            }
+            sigObj.isValid = isValid ? SIGNATURE.VALID : SIGNATURE.INVALID;
           }
-
-          sigObj.isValid = isValid ? SIGNATURE.VALID : SIGNATURE.INVALID;
-        }
-        dispatch({
-          type: FETCHED_SIGNERS_SUCCESS,
-          result: signatures,
+          dispatch({
+            type: FETCHED_SIGNERS_SUCCESS,
+            result: signatures,
+          });
         });
       })
       .catch(e => {
