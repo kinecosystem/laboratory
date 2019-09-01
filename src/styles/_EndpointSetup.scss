@@ -12,7 +12,9 @@
 
 .EndpointSetup__title {
   font-size: $s-scale-3;
-  margin: 0 0.857em .25em 0.857em;
+  font-family: SailecBold;
+  margin-bottom: 24px;
+  @include flex-row();
 }
   .EndpointSetup__streaming__checkbox {
     cursor: pointer;

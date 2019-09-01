@@ -6,7 +6,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "gulp develop",
-    "build": "gulp build"
+    "build": "gulp build",
+    "fonts": "gulp fonts"
   },
   "dependencies": {
     "@kinecosystem/kin-sdk": "^0.20.0",
@@ -22,18 +23,22 @@
     "classnames": "^2.2.0",
     "css-loader": "^0.18.0",
     "extract-text-webpack-plugin": "^0.8.2",
-    "file-loader": "^0.8.4",
+    "fontface-loader": "0.0.8",
     "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.1",
     "gulp-mocha": "^2.2.0",
     "html-webpack-plugin": "^1.6.2",
+    "install": "^0.13.0",
     "json-loader": "^0.5.3",
     "lodash": "^4.17.5",
     "mocha": "^2.4.5",
     "natives": "^1.1.6",
     "node-sass": "^4.7.2",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
+    "npm": "^6.11.2",
+    "react": "^0.14.9",
+    "react-dom": "^0.14.9",
     "react-redux": "^4.0.0",
+    "react-tooltip": "^3.11.0",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.0",
     "route-recognizer": "^0.1.9",
@@ -43,5 +48,9 @@
     "uri-templates": "^0.1.9",
     "urijs": "^1.16.0",
     "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "file-loader": "^0.8.5",
+    "gulp-inline-fonts": "^1.2.1"
   }
 }

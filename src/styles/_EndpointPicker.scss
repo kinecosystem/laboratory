@@ -1,24 +1,51 @@
-.EndpointPicker__section {
-  margin-bottom: 2em;
+.EndpointExplorer {
+  .EndpointExplorer__picker {
+    .EndpointPicker {
+      @include sm {
+        @include flex-row();
+      }
+      .EndpointPicker__resource {
+        margin-bottom: 80px;
+        @include sm {
+          
+          margin: 0  60px 0 0;
+        }
+        @include lg {
+          margin: 0 140px 30px 0;
+        }
+        @include xl {
+          margin: 0 140px 30px 0;
+        }
+      }
+    }
+  }
+  .EndpointPicker__section {
+    &__title {
+      margin: 0 0 20px 0 !important;
+    }
+    .s-button.s-button--light {
+      border-radius: 0;
+      border: none;
+      padding: 20px 0;
+      &.is-active {
+        background: none;
+        color: $purple;
+        font-family: SailecBold;
+      }
+      &:active {
+        color: #1f1f1f;
+      }
+      &:hover {
+        border: none;
+        background: none;
+      }
+    }
+  }
 }
 .EndpointPicker__section:last-child {
   margin-bottom: 0;
 }
 .EndpointPicker__section__title {
   font-size: $s-scale-3;
-  margin: 0 0.857em .25em 0.857em;
-}
-@include r-media(m) {
-  .EndpointPicker {
-    @include S-flex-row;
-  }
-  .EndpointPicker__section {
-    @include S-flexItem-noFlex;
-    margin-right: 2em;
-    margin-bottom: 0;
-  }
-  .EndpointPicker__section:last-child {
-    margin-right: 0;
-    margin-bottom: 0;
-  }
+  margin: 0 0.857em 0.25em 0.857em;
 }

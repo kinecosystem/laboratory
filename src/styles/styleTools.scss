@@ -1,0 +1,44 @@
+$dashboard_main_color: #dc650f;
+$purple:#6f41e8;
+$placeholder:#a6a6a6;
+$text-30: 30px;
+$text-20: 20px;
+$input-t-size:16px;
+
+div,
+h1,
+h2,
+h3,
+h4,
+h4,
+h6,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  font-family: Sailec;
+}
+
+@mixin flex-row($justify: flex-start, $align: flex-start) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin sm() {
+  @media screen and (min-width: 576px) {
+    @content;
+  }
+}
+@mixin lg() {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+@mixin xl() {
+  @media screen and (min-width: 1366px) {
+    @content;
+  }
+}

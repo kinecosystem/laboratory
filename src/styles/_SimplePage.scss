@@ -142,8 +142,10 @@
   border-left: 1px solid currentColor;
 }
 .so-logo__subSite {
-  font-size: $s-scale-4;
+  font-size: $text-30;
   text-decoration: none;
+  font-family:SailecLight;
+  text-transform: uppercase;
 }
 .so-logo__subSite:hover {
   text-decoration: underline;
@@ -289,8 +291,10 @@
   border-left: 1px solid currentColor;
 }
 .so-logo__subSite {
-  font-size: $s-scale-4;
+  font-size: $text_30;
   text-decoration: none;
+  margin-left:18px ;
+  color :white;
 }
 .so-logo__subSite:hover {
   text-decoration: underline;

@@ -1,61 +1,79 @@
-'use strict';
+"use strict";
 
-var _           = require('lodash');
-var bs          = require('browser-sync').create();
-var gulp        = require('gulp');
-var path        = require('path');
-var webpack     = require("webpack");
+var _ = require("lodash");
+var bs = require("browser-sync").create();
+var gulp = require("gulp");
+var path = require("path");
+var webpack = require("webpack");
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
-var mocha = require('gulp-mocha');
+var mocha = require("gulp-mocha");
 
-gulp.task('default', ['develop']);
+gulp.task("default", ["develop"]);
 
 var webpackOptions = {
   entry: {
     app: "./src/app.js",
-    vendor: ["axios", "react", "react-dom", "lodash", "@kinecosystem/kin-sdk", "babel-polyfill"]
+    vendor: [
+      "axios",
+      "react",
+      "react-dom",
+      "lodash",
+      "@kinecosystem/kin-sdk",
+      "babel-polyfill"
+    ]
   },
   output: {
-    publicPath: ''
+    publicPath: ""
   },
   devtool: "source-map",
   resolve: {
-    root: ['src'],
+    root: ["src"],
     modulesDirectories: ["node_modules"]
   },
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-      {test: /\.json$/, loader: 'json'},
-      {test: /\.scss/, loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')},
-      {test: /\.html$/, loader: 'file?name=[name].html'},
-      {test: /\.(jpe?g|png|gif|svg)$/, loader: 'file?name=images/[hash].[ext]'}
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+      { test: /\.json$/, loader: "json" },
+      {
+        test: /\.scss/,
+        loader: ExtractTextPlugin.extract("css?sourceMap!sass?sourceMap")
+      },
+      { test: /\.html$/, loader: "file?name=[name].html" },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: "file?name=images/[hash].[ext]"
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file-loader",
+        options: { name: "[name].[ext]", outputPath: "fonts/" }
+      }
     ]
   },
   plugins: [
     // Ignore native modules (ed25519)
     new webpack.IgnorePlugin(/ed25519/),
     new HtmlWebpackPlugin({
-      title: 'Kin Laboratory'
+      title: "Kin Laboratory"
     })
   ],
   node: {
-    fs: 'empty'
+    fs: "empty"
   }
 };
 
-gulp.task('develop', function(done) {
+gulp.task("develop", function(done) {
   var options = merge(webpackOptions, {
     output: {
       filename: "[name].js",
-      path: './.tmp'
+      path: "./.tmp"
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.js"),
-      new ExtractTextPlugin('style.css', {allChunks: true})
+      new ExtractTextPlugin("style.css", { allChunks: true })
     ]
   });
 
@@ -81,26 +99,31 @@ gulp.task('develop', function(done) {
       bsInitialized = true;
     }
 
-    console.log(stats.toString({
-      hash: false,
-      version: false,
-      timings: true,
-      chunks: false,
-      colors: true
-    }));
+    console.log(
+      stats.toString({
+        hash: false,
+        version: false,
+        timings: true,
+        chunks: false,
+        colors: true
+      })
+    );
   });
 });
 
-gulp.task('build', function(done) {
+gulp.task("build", function(done) {
   var options = merge(webpackOptions, {
     bail: true,
     output: {
       filename: "[name]-[chunkhash].js",
-      path: './dist'
+      path: "./dist"
     },
     plugins: [
-      new webpack.optimize.CommonsChunkPlugin("vendor", "vendor-[chunkhash].js"),
-      new ExtractTextPlugin('style-[contenthash].css', {allChunks: true}),
+      new webpack.optimize.CommonsChunkPlugin(
+        "vendor",
+        "vendor-[chunkhash].js"
+      ),
+      new ExtractTextPlugin("style-[contenthash].css", { allChunks: true }),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin()
@@ -112,7 +135,6 @@ gulp.task('build', function(done) {
   compiler.run(done);
 });
 
-
 function merge(object1, object2) {
   return _.mergeWith(object1, object2, function(a, b) {
     if (_.isArray(a)) {
@@ -121,9 +143,10 @@ function merge(object1, object2) {
   });
 }
 
-gulp.task('test:mocha', function(done) {
-  return gulp.src(['test/test-helper.js', 'test/{unit,smoke}/**/*.js'], {read: false})
-    .pipe(mocha())
+gulp.task("test:mocha", function(done) {
+  return gulp
+    .src(["test/test-helper.js", "test/{unit,smoke}/**/*.js"], { read: false })
+    .pipe(mocha());
 });
 
-gulp.task('test', ['test:mocha'], function() {});
+gulp.task("test", ["test:mocha"], function() {});

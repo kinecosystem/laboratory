@@ -52,7 +52,7 @@ class NetworkPicker extends React.Component {
           onToggle={() => dispatch(setModalVisibility(true))}
           />
       </form>
-      <span className="NetworkPicker__url">{current.horizonURL}</span>
+      {/* <span className="NetworkPicker__url">{current.horizonURL}</span> */}
     </div>
   }
 }
@@ -71,7 +71,7 @@ const NetworkToggle = (props) => {
   return <label className="s-buttonGroup__wrapper">
     <input
       type="radio"
-      className="s-buttonGroup__radio"
+      className="s-buttonGroup__radio network_radio"
       name="network-toggle"
       onChange={onToggle}
       checked={selected}
