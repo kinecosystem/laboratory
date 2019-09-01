@@ -23,7 +23,6 @@ export function EndpointSetup(props) {
         values={values}
         />
       {streamingRow}
-      <hr className="optionsTable__separator" />
       <UrlRow url={request.url} method={request.method} />
       <PostDataRow formData={request.formData} />
       <SubmitRow onSubmit={onSubmit} />
