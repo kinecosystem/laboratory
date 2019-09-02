@@ -1,14 +1,14 @@
 .EndpointSetup__url {
   word-break: break-all;
 }
-  .EndpointSetup__url__method {
-    display: inline-block;
-    padding: 0.25em 0.5em;
-    margin-right: 0.5em;
+.EndpointSetup__url__method {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  margin-right: 0.5em;
 
-    background: $s-color-neutral8;
-    border-radius: $s-var-radius;
-  }
+  background-color: rgba(111, 65, 232, 0.38);
+  border-radius: $s-var-radius;
+}
 
 .EndpointSetup__title {
   font-size: $s-scale-3;
@@ -16,10 +16,10 @@
   margin-bottom: 24px;
   @include flex-row();
 }
-  .EndpointSetup__streaming__checkbox {
-    cursor: pointer;
-    margin-right: 0.75em;
-  }
-  .EndpointSetup__streaming__title {
-    cursor: pointer;
-  }
+.EndpointSetup__streaming__checkbox {
+  cursor: pointer;
+  margin-right: 0.75em;
+}
+.EndpointSetup__streaming__title {
+  cursor: pointer;
+}

@@ -1,9 +1,10 @@
 $dashboard_main_color: #dc650f;
-$purple:#6f41e8;
-$placeholder:#a6a6a6;
+$purple: #6f41e8;
+$placeholder: #a6a6a6;
+$disabled: #e7e7e7;
 $text-30: 30px;
 $text-20: 20px;
-$input-t-size:16px;
+$input-t-size: 16px;
 
 div,
 h1,
@@ -40,5 +41,23 @@ li {
 @mixin xl() {
   @media screen and (min-width: 1366px) {
     @content;
+  }
+}
+.mt-41 {
+  margin-top: 41px;
+}
+
+.button-a {
+  width: 296px;
+  height: 66px;
+  max-width: 100%;
+  background: $purple;
+  color: white;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  &:disabled {
+    background: $disabled;
+    color: $placeholder;
   }
 }

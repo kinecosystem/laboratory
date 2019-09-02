@@ -9,6 +9,7 @@
   // General css modules (these go first to allow for low specificity overwriting for page components)
 @import "./styleTools.scss";
 @import url("./fonts.css");
+@import url("./rc-checkbox.css");
 
 @import "optionsTable";
 @import "simpleTable";
