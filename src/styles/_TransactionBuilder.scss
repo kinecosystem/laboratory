@@ -1,14 +1,14 @@
 .TransactionBuilder {
   padding-bottom: 4em;
 }
+.TransactionBuilder__clearBar {
+  margin-bottom: 0.5em;
+}
+@include r-media(l) {
   .TransactionBuilder__clearBar {
-    margin-bottom: 0.5em;
+    text-align: right;
   }
-  @include r-media(l) {
-    .TransactionBuilder__clearBar {
-      text-align: right;
-    }
-  }
+}
 
 .TransactionBuilder__result {
   padding-top: 2em;
@@ -18,9 +18,9 @@
 
   background: $s-color-neutral8;
 }
-  .TransactionBuilder__result :last-child {
-    margin-bottom: 0;
-  }
+.TransactionBuilder__result :last-child {
+  margin-bottom: 0;
+}
 
 .TransactionAttributes {
   margin-bottom: 1.5em;
@@ -44,14 +44,14 @@
 .TransactionOpMeta__order {
   padding-bottom: 0.5em;
 }
-  .TransactionOpMeta__order__input {
-    height: 72px;
-    width: 72px;
-    padding-left: 0;
-    padding-right: 0;
-    text-align: center;
-    font-size: $s-scale-a;
-  }
+.TransactionOpMeta__order__input {
+  height: 72px;
+  width: 72px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  font-size: $s-scale-a;
+}
 .TransactionOpMeta__remove {
   text-align: center;
 }
@@ -62,14 +62,8 @@
   margin-bottom: 1.5em;
 }
 .TransactionOperations__add__button {
+  @extend .button-a;
   width: 100%;
-  font-size: $s-scale-3;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  text-align: center;
-  color: $s-color-neutral2;
-  background: $s-color-neutral8;
-  border-color: $s-color-neutral6;
 }
 
 .TransactionBuilderResult__code {

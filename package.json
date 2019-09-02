@@ -38,6 +38,7 @@
     "rc-checkbox": "^2.1.7",
     "react": "^0.14.9",
     "react-dom": "^0.14.9",
+    "react-dropdown": "^1.6.4",
     "react-redux": "^4.0.0",
     "react-tooltip": "^3.11.0",
     "redux": "^3.0.4",

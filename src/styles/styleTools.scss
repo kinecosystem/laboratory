@@ -2,6 +2,7 @@ $dashboard_main_color: #dc650f;
 $purple: #6f41e8;
 $placeholder: #a6a6a6;
 $disabled: #e7e7e7;
+$black: #1f1f1f;
 $text-30: 30px;
 $text-20: 20px;
 $input-t-size: 16px;
@@ -46,18 +47,29 @@ li {
 .mt-41 {
   margin-top: 41px;
 }
-
-.button-a {
-  width: 296px;
-  height: 66px;
+%button-default {
   max-width: 100%;
-  background: $purple;
-  color: white;
   border-radius: 2px;
   outline: none;
   border: none;
+
   &:disabled {
     background: $disabled;
     color: $placeholder;
   }
+}
+.button-a {
+  @extend %button-default;
+  width: 296px;
+  height: 66px;
+  background: $purple;
+  color: white;
+}
+
+.button-b {
+  @extend %button-default;
+  background: $purple;
+  color: white;
+  width: 150px;
+  height: 50px;
 }

@@ -42,7 +42,7 @@ export default class TransactionImporter extends React.Component {
         {message}
       </div>
       <div className="s-buttonList">
-        <button className="s-button"
+        <button className="button-a"
           disabled={!submitEnabled} onClick={this.triggerImport.bind(this)}>
           Import Transaction</button>
       </div>

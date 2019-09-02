@@ -40,7 +40,7 @@ class TransactionBuilder extends React.Component {
             onUpdate={onAttributeUpdate.bind(this, dispatch)} />
           <OperationsBuilder />
           <div className="TransactionOperations__add">
-            <button className="TransactionOperations__add__button s-button" onClick={() => dispatch(addOperation())}>
+            <button className="TransactionOperations__add__button" onClick={() => dispatch(addOperation())}>
               + Add Operation
             </button>
           </div>

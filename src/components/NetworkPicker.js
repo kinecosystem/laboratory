@@ -35,7 +35,7 @@ class NetworkPicker extends React.Component {
                 value={modal.values.networkPassphrase}
                 onUpdate={(value) => dispatch(updateModal('networkPassphrase', value))}
                 />
-              <button className="s-button"
+              <button className="button-b"
                 disabled={false}
                 onClick={() => dispatch(setCustomParams(modal.values))}
                 >Use network</button>
