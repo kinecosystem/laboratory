@@ -5,9 +5,12 @@
 
   background: $s-color-neutral8;
   border-radius: $s-var-radius;
-  color:$purple;
-  font-size:$text-20;
-}
-  .pageIntro :last-child {
-    margin-bottom: 0;
+  color: $purple;
+  font-size: $text-20;
+  p {
+    font-family: SailecMedium;
   }
+}
+.pageIntro :last-child {
+  margin-bottom: 0;
+}
