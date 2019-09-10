@@ -46,7 +46,7 @@ class LedgerViewer extends React.Component {
             }}
           />
           <button
-            className="s-button TxSignerKeys__signBipPath"
+            className="TxSignerKeys__signBipPath button-a"
             onClick={() => {
               dispatch(viewAccountWithLedger(bipPath, true));
             }}

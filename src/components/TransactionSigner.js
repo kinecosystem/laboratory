@@ -132,7 +132,7 @@ class TransactionSigner extends React.Component {
                     onUpdate={(value) => dispatch(setBIPPath(value))}
                   />
                   <button
-                    className="s-button TxSignerKeys__signBipPath"
+                    className="TxSignerKeys__signBipPath button-a"
                     onClick={() => {dispatch(signWithLedger(xdr, bipPath))}}
                   >Sign with BIP Path</button>
                   {ledgerwalletMessage}

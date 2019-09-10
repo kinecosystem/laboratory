@@ -1,6 +1,5 @@
 import React from "react";
 import _ from "lodash";
-import Dropdown from "react-dropdown";
 
 // @param {object|array} props.items An object whose keys are the onUpdate values and
 //   object values are labels the user will see.
@@ -16,25 +15,39 @@ export default function SelectPicker(props) {
   let optionsList;
   if (_.isArray(items)) {
     optionsList = _.map(items, (value, index) => {
-      return value;
+      return (
+        <option key={index} value={value}>
+          {value}
+        </option>
+      );
     });
   } else {
     optionsList = _.map(items, (value, index) => {
-      return value;
+      return (
+        <option key={index} value={index}>
+          {value}
+        </option>
+      );
     });
   }
 
+  let selectPlaceholderClass;
+  if (value === "") {
+    selectPlaceholderClass = "so-dropdown__select--placeholder";
+  }
+
   return (
-    <div className={``}>
-      <Dropdown
-        value={props.placeholder}
-        onChange={eventValue => {
-          onUpdate(eventValue.value);
-        }}
-        options={optionsList}
-        placeholder="Select an option"
-        arrowClassName='arrow-down'
-      ></Dropdown>
+    <div className={`so-dropdown ${props.className}`}>
+      <select
+        className={
+          "picker picker--select so-dropdown__select " + selectPlaceholderClass
+        }
+        value={value}
+        onChange={event => onUpdate(event.target.value)}
+      >
+        <option value="">{props.placeholder}</option>
+        {optionsList}
+      </select>
     </div>
   );
 }

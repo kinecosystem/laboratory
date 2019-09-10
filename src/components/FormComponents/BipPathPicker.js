@@ -12,6 +12,6 @@ export default function BipPathPicker(props) {
         return "Invalid BIP path. Please provide it in format 44'/2017'/x'. We call 44'/2017'/0' the primary account";
       }
     }}
-    className={props.className}
+    className={props.className + ' mt-1'}
   />
 }

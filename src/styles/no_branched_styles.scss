@@ -1,6 +1,40 @@
-
-
 .site-header {
-    background: $dashboard_main_color;
-    padding: 0;
+  background: $dashboard_main_color;
+  padding: 0;
+}
+
+.so-dropdown {
+  border: 1px solid black;
+  margin-top: 1em;
+  &:hover::before {
+    background-color: transparent;
+  }
+  &::before {
+    border: none;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-image: url("../static/image/dropdown_arrow.svg") !important;
+    top: 13px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+  }
+  &::after {
+    display: none;
+    background: white !important;
+  }
+  .so-dropdown__select {
+    &:focus {
+      outline: transparent;
+    }
+    option {
+      margin: 15px 0;
+      &:hover,
+      &:checked,
+      &::selection {
+        background: $light-purple;
+        color: white;
+      }
+    }
+  }
 }

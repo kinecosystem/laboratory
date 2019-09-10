@@ -6,6 +6,7 @@ $black: #1f1f1f;
 $text-30: 30px;
 $text-20: 20px;
 $input-t-size: 16px;
+$light-purple: rgba(111, 65, 232, 0.38);
 
 div,
 h1,
@@ -46,6 +47,12 @@ li {
 }
 .mt-41 {
   margin-top: 41px;
+}
+.mt-1 {
+  margin-top: 1em;
+}
+.mb-1 {
+  margin-bottom: 1em;
 }
 %button-default {
   max-width: 100%;
