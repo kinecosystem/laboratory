@@ -52,7 +52,7 @@ class NetworkPicker extends React.Component {
           onToggle={() => dispatch(setModalVisibility(true))}
           />
       </form>
-      {/* <span className="NetworkPicker__url">{current.horizonURL}</span> */}
+      <span className="NetworkPicker__url">{current.horizonURL}</span>
     </div>
   }
 }

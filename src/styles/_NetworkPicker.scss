@@ -12,13 +12,13 @@
       background: rgba(255, 255, 255, 0.38);
       border-color: white;
     }
-    &~ .NetworkPicker__button {
+    & ~ .NetworkPicker__button {
       width: 100px;
       @include flex-row(center);
-      background:transparent;
-      color:white;
+      background: transparent;
+      color: white;
       border-color: white;
-      outline:none;
+      outline: none;
     }
   }
 }
@@ -28,11 +28,14 @@
 }
 .NetworkPicker__url {
   position: absolute;
-  bottom: -26px;
+  bottom: -46px;
   right: 0;
   white-space: nowrap;
-  font-size: $s-scale-5;
-  color: $s-color-neutral3;
+  color: white;
+  font-size: $s-scale-7;
+  @include sm {
+    font-size: $s-scale-5;
+  }
 }
 
 .NetworkPicker .overlay {
